@@ -5,6 +5,15 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-<!--    <include file="/db/changelog/v1/001-create-acquiring_bank-table.sql"/>-->
+    <include file="/db/changelog/V1/001-create-user_access-table.sql"/>
+    <include file="/db/changelog/V1/002-create-payment_system-table.sql"/>
+    <include file="/db/changelog/V1/003-create-acquiring_bank-table.sql"/>
+    <include file="/db/changelog/V1/004-create-merchant_category_code-table.sql"/>
+    <include file="/db/changelog/V1/005-create-response_code-table.sql"/>
+    <include file="/db/changelog/V1/006-create-transaction_type-table.sql"/>
+    <include file="/db/changelog/V1/007-create-sales_point-table.sql"/>
+    <include file="/db/changelog/V1/008-create-card-table.sql"/>
+    <include file="/db/changelog/V1/009-create-terminal-table.sql"/>
+    <include file="/db/changelog/V1/010-create-transaction-table.sql"/>
 
 </databaseChangeLog>

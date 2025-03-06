@@ -1,10 +1,19 @@
 spring:
-
-
-
-
-
-
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sales-point
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: HikariPool
+      maximum-pool-size: 10
+      minimum-idle: 5
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
 
 #  Liquibase
   liquibase:
