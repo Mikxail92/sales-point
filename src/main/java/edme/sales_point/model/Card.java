@@ -1,4 +1,4 @@
-package edme.sales_point.entity;
+package edme.sales_point.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

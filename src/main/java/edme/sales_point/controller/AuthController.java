@@ -1,7 +1,7 @@
 package edme.sales_point.controller;
 
 
-import edme.sales_point.model.LoginRequest;
+import edme.sales_point.modelllllllllllll.LoginRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

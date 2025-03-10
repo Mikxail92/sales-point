@@ -1,4 +1,4 @@
-package edme.sales_point.model;
+package edme.sales_point.modelllllllllllll;
 
 
 import lombok.Data;

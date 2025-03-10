@@ -1,4 +1,4 @@
-package edme.sales_point.entity;
+package edme.sales_point.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,16 +12,15 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "acquiring_bank")
-public class AcquiringBank {
+@Table(name = "payment_system")
+public class PaymentSystem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "bic", nullable = false, length = 9)
-    private String bic;
-
-    @Column(name = "abbreviated_name", nullable = false)
-    private String abbreviatedName;
+    @Column(name = "payment_system_name", nullable = false, length = 50)
+    private String paymentSystemName;
 }
+
+
