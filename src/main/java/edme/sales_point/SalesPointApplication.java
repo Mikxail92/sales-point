@@ -3,6 +3,7 @@ package edme.sales_point;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class SalesPointApplication {
 

@@ -1,13 +1,9 @@
 package edme.sales_point.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @Entity
@@ -24,4 +20,5 @@ public class AcquiringBank {
 
     @Column(name = "abbreviated_name", nullable = false)
     private String abbreviatedName;
+
 }

@@ -26,12 +26,10 @@ public class Terminal {
     private String terminalId;
 
     @ManyToOne
-    @JoinColumn(name = "mcc_id", nullable = false, referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "fk_mcc"))
+    @JoinColumn(name = "mcc_id", nullable = false)
     private MerchantCategoryCode merchantCategoryCode;
 
     @ManyToOne
-    @JoinColumn(name = "pos_id", nullable = false, referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "fk_pos"))
+    @JoinColumn(name = "pos_id", nullable = false)
     private SalesPoint salesPoint;
 }

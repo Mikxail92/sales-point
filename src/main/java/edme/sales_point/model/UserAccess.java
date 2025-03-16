@@ -1,6 +1,5 @@
 package edme.sales_point.model;
 
-import edme.sales_point.enums.UserRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,6 +8,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +25,8 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 @Table(name = "user_access")
 public class UserAccess implements UserDetails {
 
@@ -29,8 +34,10 @@ public class UserAccess implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(name = "user_login", nullable = false, unique = true)
     private String userLogin;
+
 
     @Column(name = "user_password", nullable = false)
     private String userPassword;

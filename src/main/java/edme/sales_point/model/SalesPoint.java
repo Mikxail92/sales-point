@@ -35,7 +35,6 @@ public class SalesPoint {
     private String posInn;
 
     @ManyToOne
-    @JoinColumn(name = "acquiring_bank_id", nullable = false, referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "fk_acquiring_bank"))
+    @JoinColumn(name = "acquiring_bank_id", nullable = false)
     private AcquiringBank acquiringBank;
 }

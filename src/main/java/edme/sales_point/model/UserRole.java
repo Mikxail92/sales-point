@@ -1,4 +1,4 @@
-package edme.sales_point.enums;
+package edme.sales_point.model;
 
 public enum UserRole {
     ROLE_USER,
