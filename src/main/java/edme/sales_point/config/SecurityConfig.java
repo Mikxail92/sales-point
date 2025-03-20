@@ -1,16 +1,15 @@
 package edme.sales_point.config;
 
-import edme.sales_point.model.UserRole;
 import edme.sales_point.service.UserAccessService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,19 +22,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
+//@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 //@EnableMethodSecurity
-//@RequiredArgsConstructor
 public class SecurityConfig {
-
-
-    public SecurityConfig(JwtRequestFilter jwtRequestFilter,@Lazy UserAccessService userAccessService) {
-        this.jwtRequestFilter = jwtRequestFilter;
-        this.userAccessService = userAccessService;
-    }
 
     private final UserAccessService userAccessService;
     private final JwtRequestFilter jwtRequestFilter;
+
+    @Autowired
+    public SecurityConfig(JwtRequestFilter jwtRequestFilter, @Lazy UserAccessService userAccessService) {
+        this.jwtRequestFilter = jwtRequestFilter;
+        this.userAccessService = userAccessService;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -43,10 +41,13 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)  // Отключаем защиту от CSRF
                 .cors(AbstractHttpConfigurer::disable)  // Отключаем CORS
                 .authorizeHttpRequests(customizer -> customizer
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/api/sales-point/auth/**").permitAll() // Разрешаем доступ к публичным URL
                         .requestMatchers("/api/sales-point/payment-systems/**").hasRole("ADMIN")
                         .requestMatchers("/api/sales-point/**").authenticated()
-                        .requestMatchers("/api/sales-point/sales-points").hasRole("MANAGER"))
+//                        .requestMatchers("/api/sales-point/sales-points").hasRole("MANAGER")
+//                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        )
 
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(customizer ->
@@ -57,23 +58,25 @@ public class SecurityConfig {
         return http.build();
     }
 
+//    private static final String[] AUTH_SWAGGER = {
+//            "/api/sales-point/auth**",
+//            "/swagger-ui/**",
+//            "/swagger-ui.html",
+//            "/api/sales-point/**"
+//    };
+
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        daoAuthenticationProvider.setUserDetailsService(userAccessService);
-        return daoAuthenticationProvider;
+    public AuthenticationManager authenticationManager() throws Exception {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userAccessService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return new ProviderManager(authProvider);
     }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
     }
 
 }

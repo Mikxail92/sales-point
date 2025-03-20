@@ -1,6 +1,5 @@
 package edme.sales_point.exception;
 
-import edme.sales_point.dto.AppError;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -8,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -33,8 +31,8 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(NotCreateNewUserException.class)
-    public ResponseEntity<AppError> handleException(NotCreateNewUserException exception) {
-        AppError errorResponse = AppError.builder()
+    public ResponseEntity<AppResponseError> handleException(NotCreateNewUserException exception) {
+        AppResponseError errorResponse = AppResponseError.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
                 .name(exception.getClass().getSimpleName())
                 .message(exception.getMessage())

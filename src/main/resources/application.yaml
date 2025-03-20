@@ -1,9 +1,10 @@
-
+server:
+  port: 8080
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/sales-point
     username: postgres
-    password: 123
+    password: postgres
     driver-class-name: org.postgresql.Driver
     hikari:
       pool-name: HikariPool
@@ -16,13 +17,18 @@ spring:
         show_sql: true
         format_sql: true
 
-#  Liquibase
+  #  Liquibase
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: true
 
+  data:
+    redis:
+      port: 6379
+      host: localhost
+#      password: 111
+
 jwt:
   secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
-  lifetime: 10m
-
+  lifetime: 100m
 

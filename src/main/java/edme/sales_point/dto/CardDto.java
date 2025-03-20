@@ -1,10 +1,13 @@
 package edme.sales_point.dto;
 
 import lombok.Data;
+import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
 import java.sql.Date;
 @Data
-public class CardDTO {
+//@RedisHash("Cards")
+public class CardDto implements Serializable {
 
     private Long id;
     private String cardNumber;

@@ -1,39 +1,49 @@
 package edme.sales_point.service;
 
-import edme.sales_point.dto.CardDTO;
+import edme.sales_point.dto.CardDto;
 import edme.sales_point.mapper.CardMapper;
 import edme.sales_point.model.Card;
 import edme.sales_point.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
+@Slf4j
 @RequiredArgsConstructor
 @Service
+@CacheConfig(cacheNames = "Cards")
 public class CardService {
 
     private final CardRepository cardRepository;
     private final CardMapper cardMapper;
+    private final CacheManager cacheManager;
 
-    public CardDTO createCard(CardDTO cardDTO) {
+    public CardDto createCard(CardDto cardDTO) {
         Card card = cardMapper.toEntity(cardDTO);
         Card savedCard = cardRepository.save(card);
         return cardMapper.toDTO(savedCard);
     }
 
-    public List<CardDTO> getAllCards() {
+    @Cacheable()
+    public List<CardDto> getAllCards() {
         List<Card> cards = cardRepository.findAll();
         return cards.stream().map(cardMapper::toDTO).toList();
     }
 
-    public Optional<CardDTO> getCardById(Long id) {
+    //    @Cacheable(value = "card", key = "#id")
+    @Cacheable(key = "#id")
+    public Optional<CardDto> getCardById(Long id) {
         Optional<Card> card = cardRepository.findById(id);
         return card.map(cardMapper::toDTO);
     }
 
-    public CardDTO updateCard(Long id, CardDTO cardDTO) {
+    public CardDto updateCard(Long id, CardDto cardDTO) {
         if (cardRepository.existsById(id)) {
             cardDTO.setId(id);
             Card card = cardMapper.toEntity(cardDTO);

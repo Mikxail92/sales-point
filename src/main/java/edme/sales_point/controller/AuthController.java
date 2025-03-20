@@ -1,6 +1,7 @@
 package edme.sales_point.controller;
 
 import edme.sales_point.dto.*;
+import edme.sales_point.exception.AppResponseError;
 import edme.sales_point.exception.NotCreateNewUserException;
 import edme.sales_point.service.UserAccessService;
 import edme.sales_point.util.JwtTokenUtils;
@@ -31,7 +32,9 @@ public class AuthController {
 
     private final UserAccessService userAccessService;
     private final JwtTokenUtils jwtTokenUtils;
+//    private final AuthenticationProvider authenticationProvider;
     private final AuthenticationManager authenticationManager;
+
 
 
 
@@ -44,7 +47,7 @@ public class AuthController {
         } catch (BadCredentialsException e) {
             log.warn(e.toString());
 //            return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Не верный логин или пароль."), HttpStatus.UNAUTHORIZED);
-            return new ResponseEntity<>(AppError.builder()
+            return new ResponseEntity<>(AppResponseError.builder()
                     .status(HttpStatus.UNAUTHORIZED.value())
                     .message("Не верный логин или пароль.")
                     .build(), HttpStatus.UNAUTHORIZED);
