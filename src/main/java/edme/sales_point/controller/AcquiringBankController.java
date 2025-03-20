@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/sales-point/acquiring-banks")
 @RequiredArgsConstructor
-@Tag(name = "Банк-эквайер", description = "111")
+@Tag(name = "Банк-эквайер")
 public class AcquiringBankController {
 
     private final AcquiringBankService acquiringBankService;
@@ -31,18 +31,21 @@ public class AcquiringBankController {
         return acquiringBankService.findById(id);
     }
 
+    @Operation(summary = "Добавление банка", description = "Создаёт счёт банка")
     @PostMapping
     public ResponseEntity<AcquiringBankDto> createAcquiringBank(@RequestBody AcquiringBankDto acquiringBankDto) {
         return ResponseEntity.ok(acquiringBankService.save(acquiringBankDto));
     }
 
+    @Operation(summary = "Обновить банк")
     @PutMapping("/{id}")
-    public AcquiringBankDto updateAcquiringBank(@PathVariable Long id, @RequestBody AcquiringBankDto acquiringBankDto) {
+    public AcquiringBankDto updateAcquiringBank(@Parameter(description = "ID банка")@PathVariable Long id, @RequestBody AcquiringBankDto acquiringBankDto) {
         return acquiringBankService.update(id, acquiringBankDto);
     }
 
+    @Operation(summary = "Удаление банка", description = "ВУдалить счёт банка")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAcquiringBank(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAcquiringBank(@Parameter(description = "ID банка")@PathVariable Long id) {
         acquiringBankService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

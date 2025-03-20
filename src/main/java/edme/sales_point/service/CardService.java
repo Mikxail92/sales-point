@@ -22,14 +22,14 @@ public class CardService {
 
     private final CardRepository cardRepository;
     private final CardMapper cardMapper;
-    private final CacheManager cacheManager;
+//    private final CacheManager cacheManager;
 
     public CardDto createCard(CardDto cardDTO) {
         Card card = cardMapper.toEntity(cardDTO);
         Card savedCard = cardRepository.save(card);
         return cardMapper.toDTO(savedCard);
     }
-
+//    @Cacheable(value = "cards", key = "'allCards'")
     @Cacheable()
     public List<CardDto> getAllCards() {
         List<Card> cards = cardRepository.findAll();

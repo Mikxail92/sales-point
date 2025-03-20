@@ -9,7 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "SalesPointApplication", version = "1.0",description = "SalesPointApplication"))
+@OpenAPIDefinition(info = @Info(title = "SalesPointApplication",description = "SalesPointApplication"))
 public class SalesPointApplication {
 
 	public static void main(String[] args) {

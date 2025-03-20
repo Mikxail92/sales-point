@@ -20,10 +20,12 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
+
+// включает поддержку  @Secured("ROLE_ADMIN") и @PreAuthorize и @PostAuthorize
+@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Configuration
 @EnableWebSecurity
-//@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
-//@EnableMethodSecurity
 public class SecurityConfig {
 
     private final UserAccessService userAccessService;
