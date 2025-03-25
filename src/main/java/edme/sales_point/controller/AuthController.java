@@ -13,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -32,10 +33,7 @@ public class AuthController {
 
     private final UserAccessService userAccessService;
     private final JwtTokenUtils jwtTokenUtils;
-//    private final AuthenticationProvider authenticationProvider;
     private final AuthenticationManager authenticationManager;
-
-
 
 
     @PostMapping("/login")
@@ -57,6 +55,7 @@ public class AuthController {
         return ResponseEntity.ok(new JwtResponseDto(token));
     }
 
+    @Transactional
     @PostMapping("/reg")
     public ResponseEntity<?> createToUser(@RequestBody @Validated RegistrationUserDTO registrationUserDTO,
                                           BindingResult bindingResult) {
@@ -76,8 +75,8 @@ public class AuthController {
         userAccessService.createNewUser(registrationUserDTO);
 
         return new ResponseEntity<>(CreatedResponseDto.builder()
-                .message (String.format("Пользователь с login %S создан",registrationUserDTO.getUserLogin())).build()
-                        ,HttpStatus.CREATED);
+                .message(String.format("Пользователь с login %S создан", registrationUserDTO.getUserLogin())).build()
+                , HttpStatus.CREATED);
     }
 
 

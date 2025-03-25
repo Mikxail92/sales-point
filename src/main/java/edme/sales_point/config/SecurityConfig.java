@@ -60,13 +60,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    private static final String[] AUTH_SWAGGER = {
-//            "/api/sales-point/auth**",
-//            "/swagger-ui/**",
-//            "/swagger-ui.html",
-//            "/api/sales-point/**"
-//    };
-
 
     @Bean
     public AuthenticationManager authenticationManager() throws Exception {

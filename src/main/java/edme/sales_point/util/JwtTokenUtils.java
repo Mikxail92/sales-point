@@ -27,7 +27,6 @@ public class JwtTokenUtils {
     private Duration jwtLifetime;
 
 
-
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         List<String> rolesList = userDetails.getAuthorities().stream()
@@ -62,7 +61,7 @@ public class JwtTokenUtils {
     }
 
 //    public String getRoles(String token) {
-////        return getAllClaimsFromToken(token).getSubject();
+//        return getAllClaimsFromToken(token).getSubject();
 //        return getAllClaimsFromToken(token).get("roles",String.class);
 //    }
 
