@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Murad:009-create-terminal-table.sql
+--changeset Mihail:009-create-terminal-table.sql
 --preconditions onFail:CONTINUE onError:CONTINUE
 
 CREATE TABLE IF NOT EXISTS terminal

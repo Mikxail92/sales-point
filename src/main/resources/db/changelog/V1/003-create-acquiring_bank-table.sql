@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Murad:003-create-acquiring_bank-table.sql
+--changeset Mihail:003-create-acquiring_bank-table.sql
 --preconditions onFail:CONTINUE onError:CONTINUE
 
 CREATE TABLE IF NOT EXISTS acquiring_bank

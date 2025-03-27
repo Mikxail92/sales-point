@@ -28,7 +28,7 @@ public class UserAccessService implements UserDetailsService {
     private final UserAccessRepository userAccessRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserAccess userAccess = findByUserAccessLogin(username).orElseThrow(() ->

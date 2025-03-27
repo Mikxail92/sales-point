@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Murad:002-create-payment_system-table.sql
+--changeset Mihail:002-create-payment_system-table.sql
 --preconditions onFail:CONTINUE onError:CONTINUE
 
 CREATE TABLE IF NOT EXISTS payment_system

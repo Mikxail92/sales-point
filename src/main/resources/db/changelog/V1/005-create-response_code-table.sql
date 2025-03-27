@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Murad:005-create-response_code-table.sql
+--changeset Mihail:005-create-response_code-table.sql
 --preconditions onFail:CONTINUE onError:CONTINUE
 
 CREATE TABLE IF NOT EXISTS response_code

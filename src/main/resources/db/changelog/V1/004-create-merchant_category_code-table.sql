@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Murad:004-create-merchant_category_code-table.sql
+--changeset Mihail:004-create-merchant_category_code-table.sql
 --preconditions onFail:CONTINUE onError:CONTINUE
 
 CREATE TABLE IF NOT EXISTS merchant_category_code

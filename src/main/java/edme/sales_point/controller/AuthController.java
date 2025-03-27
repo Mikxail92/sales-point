@@ -4,7 +4,7 @@ import edme.sales_point.dto.*;
 import edme.sales_point.exception.AppResponseError;
 import edme.sales_point.exception.NotCreateNewUserException;
 import edme.sales_point.service.UserAccessService;
-import edme.sales_point.util.JwtTokenUtils;
+import edme.sales_point.security.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -26,9 +25,9 @@ import java.security.Principal;
 import java.util.List;
 
 @Slf4j
-@RestController()
-@RequestMapping("/api/sales-point/auth")
 @RequiredArgsConstructor
+@RequestMapping("/api/sales-point/auth")
+@RestController()
 public class AuthController {
 
     private final UserAccessService userAccessService;
@@ -55,7 +54,7 @@ public class AuthController {
         return ResponseEntity.ok(new JwtResponseDto(token));
     }
 
-    @Transactional
+//    @Transactional
     @PostMapping("/reg")
     public ResponseEntity<?> createToUser(@RequestBody @Validated RegistrationUserDTO registrationUserDTO,
                                           BindingResult bindingResult) {
@@ -86,3 +85,4 @@ public class AuthController {
         return ResponseEntity.ok(principal.getName());
     }
 }
+

@@ -1,7 +1,7 @@
 package edme.sales_point.config;
 
 
-import edme.sales_point.util.JwtTokenUtils;
+import edme.sales_point.security.JwtTokenUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import jakarta.servlet.FilterChain;

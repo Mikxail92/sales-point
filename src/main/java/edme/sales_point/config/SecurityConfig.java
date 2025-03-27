@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 
 // включает поддержку  @Secured("ROLE_ADMIN") и @PreAuthorize и @PostAuthorize
-@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
+@EnableMethodSecurity(securedEnabled = true)
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -42,10 +42,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)  // Отключаем защиту от CSRF
                 .cors(AbstractHttpConfigurer::disable)  // Отключаем CORS
                 .authorizeHttpRequests(customizer -> customizer
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/api/sales-point/auth/**").permitAll() // Разрешаем доступ к публичным URL
-                        .requestMatchers("/api/sales-point/payment-systems/**").hasRole("ADMIN")
-                        .requestMatchers("/api/sales-point/**").authenticated()
+                                .requestMatchers("/api/sales-point/payment-systems/**").hasRole("ADMIN")
+                                .requestMatchers("/api/sales-point/**").authenticated()
+                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                                .requestMatchers("/api/sales-point/auth/**").permitAll() // Разрешаем доступ к публичным URL
 //                        .requestMatchers("/api/sales-point/sales-points").hasRole("MANAGER")
 //                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         )

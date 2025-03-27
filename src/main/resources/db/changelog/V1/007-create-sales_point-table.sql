@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Murad:007-create-sales_point-table.sql
+--changeset Mihail:007-create-sales_point-table.sql
 --preconditions onFail:CONTINUE onError:CONTINUE
 
 CREATE TABLE IF NOT EXISTS sales_point

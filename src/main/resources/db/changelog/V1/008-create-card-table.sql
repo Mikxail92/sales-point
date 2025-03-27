@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Murad:008-create-card-table.sql
+--changeset Mihail:008-create-card-table.sql
 --preconditions onFail:CONTINUE onError:CONTINUE
 
 CREATE TABLE IF NOT EXISTS card

@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Murad:010-create-transaction-table.sql
+--changeset Mihail:010-create-transaction-table.sql
 --preconditions onFail:CONTINUE onError:CONTINUE
 
 CREATE TABLE IF NOT EXISTS transaction

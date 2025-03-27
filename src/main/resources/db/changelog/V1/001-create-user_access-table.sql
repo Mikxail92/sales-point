@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset Murad:001-create-user_access-table.sql
+--changeset Mihail:001-create-user_access-table.sql
 --preconditions onFail:CONTINUE onError:CONTINUE
 
 CREATE TABLE IF NOT EXISTS user_access
