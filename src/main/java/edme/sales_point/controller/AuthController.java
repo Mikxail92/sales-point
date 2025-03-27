@@ -54,7 +54,7 @@ public class AuthController {
         return ResponseEntity.ok(new JwtResponseDto(token));
     }
 
-//    @Transactional
+
     @PostMapping("/reg")
     public ResponseEntity<?> createToUser(@RequestBody @Validated RegistrationUserDTO registrationUserDTO,
                                           BindingResult bindingResult) {
